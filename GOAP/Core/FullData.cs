@@ -44,6 +44,7 @@ namespace Deck.Core.GOAP.Core
 
             return true;
         }
+
         public FullData DeepCopy()
         {
             var newData = new FullData
@@ -61,9 +62,15 @@ namespace Deck.Core.GOAP.Core
                 m_Data[localKvp.Key] = localKvp.Value;
             }
         }
+
         public void Set(Enum enumKey, object value)
         {
-            m_Data[enumKey.ToString()] = value;
+            Set(enumKey.ToString(), value);
+        }
+
+        public void Set(string strKey, object value)
+        {
+            m_Data[strKey] = value;
         }
 
         public bool GetBool(Enum enumKey)

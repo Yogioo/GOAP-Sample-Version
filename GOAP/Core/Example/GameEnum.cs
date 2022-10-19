@@ -1,4 +1,4 @@
-﻿namespace Deck.Core.GOAP.Example
+﻿namespace Deck.Core.GOAP.Core.Example
 {
     public enum GameEnum
     {

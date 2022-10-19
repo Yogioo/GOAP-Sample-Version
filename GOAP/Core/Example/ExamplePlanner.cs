@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Deck.Core.GOAP.Core;
 
-namespace Deck.Core.GOAP.Example
+namespace Deck.Core.GOAP.Core.Example
 {
     public class ExamplePlanner
     {
@@ -16,6 +15,11 @@ namespace Deck.Core.GOAP.Example
             // 目标设定
             GoalData goal = new GoalData();
             goal.SetGoal(GameEnum.IsHungry, false);
+            goal.GoalPriority = 100;
+
+            GoalData goal2 = new GoalData();
+            goal2.SetGoal(GameEnum.HasFood, true);
+            goal.GoalPriority = 1;
 
             // 初始化所有行为
             List<ActionData> actions = new List<ActionData>();
@@ -23,10 +27,6 @@ namespace Deck.Core.GOAP.Example
             ActionData eat = AddAction("eat");
             eat.SetRequest(GameEnum.HasFood, true);
             eat.SetEffect(GameEnum.IsHungry, false);
-            eat.SetAction(() =>
-            {
-                //TODO: 游戏通信,通知吃饭功能系统触发吃 其他类似这里就不写了
-            });
 
             ActionData phoneForApple = AddAction("phoneForApple");
             phoneForApple.SetRequest(GameEnum.HasPhoneNumber, true);
@@ -56,9 +56,16 @@ namespace Deck.Core.GOAP.Example
                 return newAction;
             }
 
-            // 离线构建计划 TODO:实时计算计划的Cost 与可行性 然后执行
-            var buildPlan = PlannerAPI.BuildPlan(goal, actions);
-            // 实时构建计划
+
+            // 举例:离线构建整个AI的解决方案
+            var allGoals = new List<GoalData>
+            {
+                goal,
+                goal2
+            };
+            var buildAllSolution = PlannerAPI.BuildAllSolution(allGoals, actions);
+
+            // 举例:实时构建计划
             var plan = PlannerAPI.MakePlan(worldData, goal, actions);
         }
     }

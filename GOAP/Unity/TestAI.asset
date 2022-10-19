@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 388e174f4fd747e5a3fb8010243f4300, type: 3}
+  m_Name: TestAI
+  m_EditorClassIdentifier: 
+  Setting:
+    GoalSetting:
+      Goals:
+      - Data:
+        - Key: Hungry
+          InputType: 0
+          InputValue: false
+    ActionSetting:
+    - Name: Eat
+      Request:
+        Data:
+        - Key: HasFood
+          InputType: 0
+          InputValue: true
+      Effects:
+        Data:
+        - Key: Hungry
+          InputType: 0
+          InputValue: false
+      Cost: 0
+    - Name: WaitForDelivery
+      Request:
+        Data: []
+      Effects:
+        Data:
+        - Key: HasFood
+          InputType: 0
+          InputValue: true
+      Cost: 0
